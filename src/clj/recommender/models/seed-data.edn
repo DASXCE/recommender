@@ -1,0 +1,36 @@
+[
+ ;; location
+ {:db/id #db/id[:db.part/user -1000001]
+  :location/name "Podgorica"}
+
+ ;;service provider
+ {:db/id #db/id[:db.part/user -1000002]
+  :provider/name "Goran"
+  :provider/telephone "068150778"
+  :provider/location #db/id[:db.part/user -1000001]}
+
+ ;;service
+ {:db/id #db/id[:db.part/user -1000003]
+  :service/name "Popravka racunara"
+  :service/provider #db/id[:db.part/user -1000002]
+  :service/tags ["racunari" "laptopovi"]}
+
+ ;;service provider
+ {:db/id #db/id[:db.part/user -1000004]
+  :provider/name "Marko"
+  :provider/telephone "069548321"
+  :provider/location #db/id[:db.part/user -1000001]}
+
+ ;;service
+ {:db/id #db/id[:db.part/user -1000005]
+  :service/name "Popravka automobila"
+  :service/provider #db/id[:db.part/user -1000004]
+  :service/tags ["autodjelovi" "elektrika"]}
+
+ ;;service provider
+ {:db/id #db/id[:db.part/user -1000006]
+  :provider/name "Dejo"
+  :provider/telephone "069297032"
+  :provider/service #db/id[:db.part/user -1000004]
+  :provider/location #db/id[:db.part/user -1000001]}
+ ]
