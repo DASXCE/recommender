@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # recommender
 
 FIXME
@@ -17,3 +18,7 @@ To start a web server for the application, run:
 ## License
 
 Copyright © 2014 FIXME
+=======
+recommender
+===========
+>>>>>>> 2607e337ff760c35b04d2aa4b4341e03c061a26e
