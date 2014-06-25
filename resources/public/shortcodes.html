@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>FAQ - Bootstrap Admin Template</title>
+    <title>Account - Bootstrap Admin Template</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,18 +17,20 @@
     <link href="css/style.css" rel="stylesheet">
 
 
-    <link href="js/guidely/guidely.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
   </head>
 
 <body>
 
 <div class="navbar navbar-fixed-top">
+
 	<div class="navbar-inner">
+
 		<div class="container">
 
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -110,7 +112,7 @@
 					</a>
 				</li>
 
-				<li class="active">
+				<li>
 					<a href="guidely.html">
 						<i class="icon-facetime-video"></i>
 						<span>App Tour</span>
@@ -126,14 +128,14 @@
 				</li>
 
 
-                <li>
+                <li class="active">
 					<a href="shortcodes.html">
 						<i class="icon-code"></i>
 						<span>Shortcodes</span>
 					</a>
 				</li>
 
-				<li class="  dropdown">
+				<li class="dropdown">
 					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 						<i class="icon-long-arrow-down"></i>
 						<span>Drops</span>
@@ -141,7 +143,7 @@
 					</a>
 
 					<ul class="dropdown-menu">
-                    	<li><a href="icons.html">Icons</a></li>
+                        <li><a href="icons.html">Icons</a></li>
 						<li><a href="faq.html">FAQ</a></li>
                         <li><a href="pricing.html">Pricing Plans</a></li>
                         <li><a href="login.html">Login</a></li>
@@ -159,31 +161,94 @@
 </div> <!-- /subnavbar -->
 
 
+
 <div class="main">
 
 	<div class="main-inner">
 
 	    <div class="container">
 
-	      <div class="row" id="rowContent">
+	      <div class="row">
+
+	      	<div class="span12">
+
+	      		<div class="widget ">
+
+	      			<div class="widget-header">
+	      				<i class="icon-user"></i>
+	      				<h3>New Recommendation</h3>
+	  				</div> <!-- /widget-header -->
+
+					<div class="widget-content" id="form-content">
 
 
 
-	      	 <div class="span3">
+						<div class="tabbable">
 
-	      		<div class="widget">
+						<br>
 
-	      			<div class="widget-content">
+							<div class="tab-content">
+								<div class="tab-pane active" id="formcontrols">
+                                    <form id="new-recomm-form" class="form-horizontal" method="post" action="/add-new-recomm">
+									<fieldset>
 
-			      		<h1>3 Columns</h1>
+										<div class="control-group">
+											<label class="control-label" for="service-name">Service</label>
+											<div class="controls">
+												<input type="text" class="span6" id="service-name" name="service-name" title="Type a name for your service" required>
+												<p class="help-block">The service name or recommendation.</p>
+											</div> <!-- /controls -->
+										</div> <!-- /control-group -->
 
-			      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
 
-		      		</div> <!-- /widget-content -->
+										<div class="control-group">
+											<label class="control-label" for="provider-name">Name</label>
+											<div class="controls">
+												<input type="text" class="span6" id="provider-name" name="provider-name" title="Type your full name" required>
+                                                <p class="help-block">The service provider name.</p>
+											</div> <!-- /controls -->
+										</div> <!-- /control-group -->
 
-	      		</div> <!-- /widget -->
+										<div class="control-group">
+											<label class="control-label" for="location">Location</label>
+											<div class="controls">
+												<input type="text" class="span4" id="location" name="location" title="Where are you? Your City." required>
+											</div> <!-- /controls -->
+										</div> <!-- /control-group -->
 
-                </div> <!-- /span3 -->
+										<div class="control-group">
+											<label class="control-label" for="tags">tags</label>
+											<div class="controls">
+												<textarea class="span6" id="tags" style="overflow:hidden" name="tags"></textarea>
+                                                <p class="help-block">The more the better. Divide with space</p>
+											</div> <!-- /controls -->
+										</div> <!-- /control-group -->
+
+										<br /><br />
+
+										<div class="form-actions">
+											<button type="submit" id="submit" class="btn btn-primary">Save</button>
+											<button type="reset" class="btn" id="cancel">Cancel</input>
+										</div> <!-- /form-actions -->
+									</fieldset>
+								</form>
+								</div>
+							</div>
+
+
+						</div>
+
+
+
+
+
+					</div> <!-- /widget-content -->
+
+				</div> <!-- /widget -->
+
+		    </div> <!-- /span8 -->
+
+
 
 
 	      </div> <!-- /row -->
@@ -193,6 +258,7 @@
 	</div> <!-- /main-inner -->
 
 </div> <!-- /main -->
+
 
 
 
@@ -278,18 +344,14 @@
 </div> <!-- /footer -->
 
 
-<!-- Le javascript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="js/jquery-1.7.2.min.js"></script>
 
-<script src="js/bootstrap.js"></script>
-<script src="js/base.js"></script>
+    <script src="js/jquery-1.7.2.min.js"></script>
 
-<script src="js/guidely/guidely.min.js"></script>
-
+    <script src="js/bootstrap.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/dev.js"></script>
+    <script type="text/javascript">recommender.newrecomm.init(); </script>
 
   </body>
-    <script type="text/javascript" src="js/dev.js"></script>
-    <script type="text/javascript">recommender.allservices.init();</script>
+
 </html>

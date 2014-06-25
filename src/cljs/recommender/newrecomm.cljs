@@ -24,14 +24,22 @@
     true))
 
 (defn handler [response]
-  (js/alert "success!"))
+  (dom/prepend! (dom/by-id "form-content") (hiccupsrt/render-html [:div#success.alert.alert-success
+                                                                  [:button.close {:data-dismiss "alert", :type "button"} "×"]
+                                                                  [:h4 "Success!"]
+                                                                  [:p  response]])))
 
 (defn err-handler [response]
-  (js/alert (:response response)))
+  (dom/prepend! (dom/by-id "form-content") (hiccupsrt/render-html [:div#error.alert.alert-block
+                                                                   [:button.close {:data-dismiss "alert", :type "button"} "×"]
+                                                                   [:h4 "Error!"]
+                                                                   [:p (:response response)]])))
 
 
 (defn submit-form [evt service-name provider-name location tags]
   ;(if (validate-form evt service-name provider-name location tags)
+  (dom/destroy! (dom/by-id "error"))
+  (dom/destroy! (dom/by-id "success"))
   (POST "/add-new-recomm"
               {:format :raw
                :params {:service-name (dom/value service-name)

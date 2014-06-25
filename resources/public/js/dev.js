@@ -36793,12 +36793,17 @@ goog.require("hiccups.runtime");
 goog.require("domina");
 goog.require("domina");
 recommender.newrecomm.handler = function handler(response) {
-  return alert("success!");
+  return domina.prepend_BANG_.call(null, domina.by_id.call(null, "form-content"), hiccups.runtime.render_html.call(null, new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div#success.alert.alert-success", "div#success.alert.alert-success", 1647857557), new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "button.close", "button.close", 888420270), new cljs.core.PersistentArrayMap(null, 
+  2, [new cljs.core.Keyword(null, "data-dismiss", "data-dismiss", 770256601), "alert", new cljs.core.Keyword(null, "type", "type", 1017479852), "button"], null), "\u00d7"], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "h4", "h4", 1013907518), "Success!"], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "p", "p", 1013904354), response], null)], null)));
 };
 recommender.newrecomm.err_handler = function err_handler(response) {
-  return alert((new cljs.core.Keyword(null, "response", "response", 673580979)).cljs$core$IFn$_invoke$arity$1(response));
+  return domina.prepend_BANG_.call(null, domina.by_id.call(null, "form-content"), hiccups.runtime.render_html.call(null, new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div#error.alert.alert-block", "div#error.alert.alert-block", 2723717732), new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "button.close", "button.close", 888420270), new cljs.core.PersistentArrayMap(null, 
+  2, [new cljs.core.Keyword(null, "data-dismiss", "data-dismiss", 770256601), "alert", new cljs.core.Keyword(null, "type", "type", 1017479852), "button"], null), "\u00d7"], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "h4", "h4", 1013907518), "Error!"], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "p", "p", 1013904354), (new cljs.core.Keyword(null, "response", 
+  "response", 673580979)).cljs$core$IFn$_invoke$arity$1(response)], null)], null)));
 };
 recommender.newrecomm.submit_form = function submit_form(evt, service_name, provider_name, location, tags) {
+  domina.destroy_BANG_.call(null, domina.by_id.call(null, "error"));
+  domina.destroy_BANG_.call(null, domina.by_id.call(null, "success"));
   ajax.core.POST.call(null, "/add-new-recomm", new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "format", "format", 4040092521), new cljs.core.Keyword(null, "raw", "raw", 1014016922), new cljs.core.Keyword(null, "params", "params", 4313443576), new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "service-name", "service-name", 1327608341), domina.value.call(null, service_name), new cljs.core.Keyword(null, "provider-name", "provider-name", 871602265), domina.value.call(null, 
   provider_name), new cljs.core.Keyword(null, "location", "location", 2914947879), domina.value.call(null, location), new cljs.core.Keyword(null, "tags", "tags", 1017456523), domina.value.call(null, tags)], null), new cljs.core.Keyword(null, "handler", "handler", 1706707644), recommender.newrecomm.handler, new cljs.core.Keyword(null, "error-handler", "error-handler", 1866823671), recommender.newrecomm.err_handler], null));
   return domina.events.prevent_default.call(null, evt);
