@@ -26,6 +26,9 @@
 (defn handler [response]
   (js/alert "success!"))
 
+(defn err-handler [response]
+  (js/alert (:response response)))
+
 
 (defn submit-form [evt service-name provider-name location tags]
   ;(if (validate-form evt service-name provider-name location tags)
@@ -35,10 +38,13 @@
                         :provider-name (dom/value provider-name)
                         :location (dom/value location)
                         :tags (dom/value tags)}
-               :handler handler})
+               :handler handler
+               :error-handler err-handler})
   (ev/prevent-default evt)
 
       )
+
+
 
 ;)
 

@@ -36795,9 +36795,12 @@ goog.require("domina");
 recommender.newrecomm.handler = function handler(response) {
   return alert("success!");
 };
+recommender.newrecomm.err_handler = function err_handler(response) {
+  return alert((new cljs.core.Keyword(null, "response", "response", 673580979)).cljs$core$IFn$_invoke$arity$1(response));
+};
 recommender.newrecomm.submit_form = function submit_form(evt, service_name, provider_name, location, tags) {
-  ajax.core.POST.call(null, "/add-new-recomm", new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "format", "format", 4040092521), new cljs.core.Keyword(null, "raw", "raw", 1014016922), new cljs.core.Keyword(null, "params", "params", 4313443576), new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "service-name", "service-name", 1327608341), domina.value.call(null, service_name), new cljs.core.Keyword(null, "provider-name", "provider-name", 871602265), domina.value.call(null, 
-  provider_name), new cljs.core.Keyword(null, "location", "location", 2914947879), domina.value.call(null, location), new cljs.core.Keyword(null, "tags", "tags", 1017456523), domina.value.call(null, tags)], null), new cljs.core.Keyword(null, "handler", "handler", 1706707644), recommender.newrecomm.handler], null));
+  ajax.core.POST.call(null, "/add-new-recomm", new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "format", "format", 4040092521), new cljs.core.Keyword(null, "raw", "raw", 1014016922), new cljs.core.Keyword(null, "params", "params", 4313443576), new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "service-name", "service-name", 1327608341), domina.value.call(null, service_name), new cljs.core.Keyword(null, "provider-name", "provider-name", 871602265), domina.value.call(null, 
+  provider_name), new cljs.core.Keyword(null, "location", "location", 2914947879), domina.value.call(null, location), new cljs.core.Keyword(null, "tags", "tags", 1017456523), domina.value.call(null, tags)], null), new cljs.core.Keyword(null, "handler", "handler", 1706707644), recommender.newrecomm.handler, new cljs.core.Keyword(null, "error-handler", "error-handler", 1866823671), recommender.newrecomm.err_handler], null));
   return domina.events.prevent_default.call(null, evt);
 };
 recommender.newrecomm.init = function init() {
@@ -36823,3 +36826,49 @@ recommender.newrecomm.init = function init() {
   }
 };
 goog.exportSymbol("recommender.newrecomm.init", recommender.newrecomm.init);
+goog.provide("recommender.allservices");
+goog.require("cljs.core");
+goog.require("ajax.core");
+goog.require("ajax.core");
+goog.require("domina.events");
+goog.require("domina.events");
+goog.require("hiccups.runtime");
+goog.require("hiccups.runtime");
+goog.require("domina");
+goog.require("domina");
+recommender.allservices.render_service = function render_service(p__5414) {
+  var map__5416 = p__5414;
+  var map__5416__$1 = cljs.core.seq_QMARK_.call(null, map__5416) ? cljs.core.apply.call(null, cljs.core.hash_map, map__5416) : map__5416;
+  var tags = cljs.core.get.call(null, map__5416__$1, new cljs.core.Keyword(null, "tags", "tags", 1017456523));
+  var location = cljs.core.get.call(null, map__5416__$1, new cljs.core.Keyword(null, "location", "location", 2914947879));
+  var provider_name = cljs.core.get.call(null, map__5416__$1, new cljs.core.Keyword(null, "provider-name", "provider-name", 871602265));
+  var service_name = cljs.core.get.call(null, map__5416__$1, new cljs.core.Keyword(null, "service-name", "service-name", 1327608341));
+  return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div.span3", "div.span3", 2041374206), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div.widget", "div.widget", 2908838323), new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div.widget-content", "div.widget-content", 4299661407), new cljs.core.PersistentVector(null, 
+  2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "h3", "h3", 1013907517), service_name], null), new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "p", "p", 1013904354), "Provider: ", provider_name], null), new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "p", "p", 1013904354), "Location: ", location], null), new cljs.core.PersistentVector(null, 2, 5, 
+  cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "p", "p", 1013904354), cljs.core.map.call(null, function(map__5416, map__5416__$1, tags, location, provider_name, service_name) {
+    return function(p1__5413_SHARP_) {
+      return cljs.core.vec.call(null, new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "span.label.label-info", "span.label.label-info", 2146426039), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "style", "style", 1123684643), "margin-right:2px;"], null), "" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(p1__5413_SHARP_)], null));
+    };
+  }(map__5416, map__5416__$1, tags, location, provider_name, service_name), tags)], null)], null)], null)], null);
+};
+recommender.allservices.handler = function handler(services) {
+  return domina.append_BANG_.call(null, domina.by_id.call(null, "rowContent"), hiccups.runtime.render_html.call(null, cljs.core.map.call(null, recommender.allservices.render_service, services)));
+};
+recommender.allservices.get_all_services = function get_all_services() {
+  return ajax.core.GET.call(null, "/get-all-services", new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "handler", "handler", 1706707644), recommender.allservices.handler], null));
+};
+recommender.allservices.init = function init() {
+  if (cljs.core.truth_(function() {
+    var and__3529__auto__ = document;
+    if (cljs.core.truth_(and__3529__auto__)) {
+      return document["getElementById"];
+    } else {
+      return and__3529__auto__;
+    }
+  }())) {
+    return recommender.allservices.get_all_services.call(null);
+  } else {
+    return null;
+  }
+};
+goog.exportSymbol("recommender.allservices.init", recommender.allservices.init);

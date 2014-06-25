@@ -2,6 +2,7 @@
   (:require [compojure.core :refer :all]
             [liberator.core :refer [defresource resource]]
             [noir.io :as io]
+            [noir.response :as nr]
             [clojure.java.io :refer [file]]
             [recommender.utils.validation :refer :all]
             [recommender.views.errors :refer :all]
@@ -38,7 +39,7 @@
                (empty? (service-name-errors service-name)))
         false
         true)
-      (println service-name provider-name location tags)))
+      ))
 
   :handle-malformed
   "The form did not pass the validation!"
@@ -50,11 +51,16 @@
 
       (d/add-new-recomm service-name provider-name location tags)))
 
-  :handle-created (fn [_] "ok")
+  :handle-created (fn [context] "ok")
 
   :available-media-types ["text/html"]
   )
 
+(defn get-all-services []
+  (d/get-all-services))
+
 (defroutes home-routes
   (ANY "/" request home)
-  (ANY "/add-new-recomm" request add-new-recomm))
+  (ANY "/add-new-recomm" request add-new-recomm)
+  (GET "/get-all-services" request (nr/edn (get-all-services)))
+  )

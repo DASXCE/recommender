@@ -164,20 +164,7 @@
                [?l :location/name ?ln]] (d/db conn))
 
         (map #(zipmap [:e-id :service-name :provider-name :location] %))
-        (map #(assoc % :tags (get-tags-for-service (:e-id %))))))
+        (map #(assoc % :tags (get-tags-for-service (:e-id %))))
+        (vec)))
 
- (d/q '[:find ?tn  ?sn :where
-        [?e :service/tags ?tn]
-        ;[?e :service/name "Popravka automobila"]
-        [?e :service/name ?sn]
-        ] (d/db conn))
-
-
-
-
-
-
-
-
- [{:e-id 131213 :service-name "aa" :provider-name "pp" :location "pg" :tags ["1 " "qew"]}]
-
+; (get-all-services)
