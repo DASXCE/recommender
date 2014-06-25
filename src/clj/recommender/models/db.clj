@@ -23,7 +23,7 @@
 ;; (install-seed-data)
 
 
-(defn get-all-services []
+(defn get-all-services-test []
   (d/q '[:find ?n :where [?c service/name ?n ]] (d/db conn)))
 
 (defn get-all-tags []
@@ -111,6 +111,20 @@
        (map #(first %))
        (set)))
 
+(defn get-tags-for-service
+  [service]
+  (->> (d/q '[:find ?n ?ts
+              :in $ ?e
+              :where
+              [?e :service/tags ?n ?tx]
+              [?tx :db/txInstant ?ts]] (d/db conn) service)
+
+       (sort-by #(second %))
+       (reverse)
+       (map #(first %))
+       (vec)))
+
+
 
 
 ; (get-service-name (get-last-added-service))
@@ -121,7 +135,7 @@
 
 ; (add-a-person "miliu")
 ; (get-all-providers)
-; (get-all-services)
+; (get-all-services-test)
 
 ;(datomic.api/transact conn
  ;            [{:db/id (d/tempid :db.part/user) :location/name "Santiago, Chile" :provider/telephone "+56 9999 9999"}])
@@ -138,4 +152,32 @@
                  (get-location-name (get-last-added-location)) (get-tags-for-last-added-service)]]
      (delete-last-added-entity)
      return))
+
+ (defn get-all-services
+   []
+   (->> (d/q '[:find ?e ?sn ?pn ?ln
+               :where
+               [?e :service/name ?sn]
+               [?e :service/provider ?p]
+               [?p :provider/name ?pn]
+               [?p :provider/location ?l]
+               [?l :location/name ?ln]] (d/db conn))
+
+        (map #(zipmap [:e-id :service-name :provider-name :location] %))
+        (map #(assoc % :tags (get-tags-for-service (:e-id %))))))
+
+ (d/q '[:find ?tn  ?sn :where
+        [?e :service/tags ?tn]
+        ;[?e :service/name "Popravka automobila"]
+        [?e :service/name ?sn]
+        ] (d/db conn))
+
+
+
+
+
+
+
+
+ [{:e-id 131213 :service-name "aa" :provider-name "pp" :location "pg" :tags ["1 " "qew"]}]
 

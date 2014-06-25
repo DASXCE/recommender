@@ -36,8 +36,9 @@
     (let [{:keys [service-name provider-name location tags]} (get-in context [:request :params])]
       (if (and (empty? (new-recomm-errors service-name provider-name location tags))
                (empty? (service-name-errors service-name)))
-      false
-      true)))
+        false
+        true)
+      (println service-name provider-name location tags)))
 
   :handle-malformed
   "The form did not pass the validation!"
@@ -46,9 +47,8 @@
   (fn [context]
     (let [{:keys [service-name provider-name location tags]} (get-in context [:request :params])
           tags (vec (.split tags " "))]
-      (println service-name provider-name location tags)
-      (println (vec tags))
-      (println "retunr value " (d/add-new-recomm service-name provider-name location tags))))
+
+      (d/add-new-recomm service-name provider-name location tags)))
 
   :handle-created (fn [_] "ok")
 

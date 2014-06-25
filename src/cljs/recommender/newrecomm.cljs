@@ -3,7 +3,7 @@
             [hiccups.runtime :as hiccupsrt]
             [domina.events :as ev]
             [ajax.core :refer [GET POST]]
-            ;[recommender.utils.validation :refer [new-recomm-errors service-name-errors]]
+            ;[recommender.utils.validation :refer [new-recomm-errors]]
             ))
 
 #_(defn validate-service-name [sn]
@@ -15,18 +15,41 @@
            (new-recomm-errors (dom/value service-name) (dom/value provider-name) (dom/value location) (dom/value tags))
            ;{su-errs :service-name} (service-name-errors (dom/value service-name))
            ]
-    (if (or s-errs p-errs l-errs t-errs su-errs)
+    (if (or s-errs p-errs l-errs t-errs)
       (do
         (dom/destroy! (dom/by-class "help"))
         (ev/prevent-default evt)
-        (dom/append! (dom/by-id "loginForm") (h/html [:div.help "Please complete the form."])))
+        (dom/append! (dom/by-id "loginForm") (hiccupsrt/html [:div.help "Please complete the form."])))
       (ev/prevent-default evt))
     true))
 
-#_(defn ^:export init []
+(defn handler [response]
+  (js/alert "success!"))
+
+
+(defn submit-form [evt service-name provider-name location tags]
+  ;(if (validate-form evt service-name provider-name location tags)
+  (POST "/add-new-recomm"
+              {:format :raw
+               :params {:service-name (dom/value service-name)
+                        :provider-name (dom/value provider-name)
+                        :location (dom/value location)
+                        :tags (dom/value tags)}
+               :handler handler})
+  (ev/prevent-default evt)
+
+      )
+
+;)
+
+
+(defn ^:export init []
   (if (and js/document
            (aget js/document "getElementById"))
     (let [service-name (dom/by-id "service-name") provider-name (dom/by-id "provider-name")
           location (dom/by-id "location") tags (dom/by-id "tags")]
-      (ev/listen! (dom/by-id "submit") :click (fn [evt] (validate-form evt service-name provider-name location tags)))
-      (ev/listen! service-name :blur (fn [evt] (validate-service-name service-name))))))
+      (ev/listen! (dom/by-id "submit") :click
+                  (fn [evt] (submit-form evt service-name provider-name location tags))
+                  )
+      ;(ev/listen! service-name :blur (fn [evt] (validate-service-name service-name)))
+      )))
